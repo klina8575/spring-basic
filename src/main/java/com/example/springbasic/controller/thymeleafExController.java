@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -17,8 +18,11 @@ public class thymeleafExController {
 	
 	@GetMapping(value = "/ex01")
 	public String thymeleafExample01(Model model) {
-		//request.setAttribute("board", b) 와 같은 역할
+		//model.addAttribute(key, value) : view단에 데이터를 넘겨줄때 사용
 		model.addAttribute("data", "타임리프 예제입니다.");
+		model.addAttribute("result", 2024);
+
+		//보여주고 싶은 화면의 경로/파일명[확장자 제거] 작성(templates 하위 경로)
 		return "thymeleafEx/thymeleafEx01";
 	}
 	
@@ -80,9 +84,11 @@ public class thymeleafExController {
 	}
 	
 	
-	
+
+	//https://hianna.tistory.com/833
 	@GetMapping(value = "/ex06")
-	public String thymeleafExample06(Model model, String param1, String param2) {
+	public String thymeleafExample06(Model model, @RequestParam(value="param1") String param1,
+									 @RequestParam(value="param2") String param2) {
 		System.out.println("param1" + param1); //데이터1
 		System.out.println("param2" + param2); //데이터2
 		
@@ -97,5 +103,9 @@ public class thymeleafExController {
 	public String thymeleafExample07() {
 		return "thymeleafEx/thymeleafEx07";	
 	}
-	
+
+	@GetMapping(value = "/ex08")
+	public String thymeleafExample08() {
+		return "thymeleafEx/thymeleafEx08";
+	}
 }

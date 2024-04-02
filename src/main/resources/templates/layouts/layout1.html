@@ -1,28 +1,35 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-      <!-- 레이아웃으로 사용할 페이지에 추가 -->
+<html lang="ko"
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Title</title>
 
-<!-- 공통으로 사용할 jquery  -->
-<script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+	<!-- 공통으로 사용할 javascript 코드 -->
+	<script th:src="@{js/script.js}"></script>
+	<!--    <script src="js/script.js"></script>-->
 
-<!-- 각 페이지의 CSS가 작성될 위치 -->
-<th:block layout:fragment="css"></th:block>
+	<!-- 공통으로 사용할 CSS 코드 -->
+	<link rel="stylesheet" th:href="@{css/style.css}">
+	<!--    <link rel="stylesheet" href="css/style.css">-->
 
+	<!-- 각 페이지의 CSS가 작성될 위치 -->
+	<th:block layout:fragment="css"></th:block>
+
+	<!-- 각 페이지의 JS가 작성될 위치 -->
+	<th:block layout:fragment="script"></th:block>
 
 </head>
 <body>
-	<div th:replace="fragments/header::header"></div>
-	
-	<div layout:fragment="content" class="content">
-	</div>
-	
-	<div th:replace="fragments/footer::footer"></div>
-	
-	<!-- 각 페이지의 자바스크립트가 작성될 위치  -->
-	<th:block layout:fragment="script"></th:block>
+<!-- 헤더 -->
+<div th:replace="fragments/header::header"></div>
+
+<!-- 본문 -->
+<div layout:fragment="content"></div>
+
+<!-- 푸터 -->
+<div th:replace="fragments/footer::footer"></div>
 </body>
 </html>
